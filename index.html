@@ -3,247 +3,446 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dinner Invitation</title>
+
+<title>Dinner Invitation 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
 <style>
-body{
-    font-family: Arial, sans-serif;
-    text-align:center;
-    background:#fff5f5;
+
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #ffe4ec,
+        #ffd6e7,
+        #fff0f5
+    );
+    min-height:100vh;
     overflow:hidden;
 }
 
 .page{
     display:none;
+    width:100%;
     height:100vh;
+
     justify-content:center;
     align-items:center;
-    flex-direction:column;
 }
 
 .active{
     display:flex;
 }
 
+.card{
+    width:90%;
+    max-width:600px;
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(15px);
+
+    padding:40px;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    box-shadow:
+    0 15px 40px rgba(255,105,180,.15);
+}
+
 h1{
-    color:#ff4d6d;
+    color:#ff5c8a;
+    margin-bottom:20px;
+}
+
+p{
+    color:#666;
 }
 
 button{
-    padding:12px 25px;
-    margin:10px;
-    font-size:18px;
     border:none;
-    border-radius:10px;
+    border-radius:50px;
+
+    padding:14px 35px;
+
+    font-size:17px;
+    font-weight:600;
+
     cursor:pointer;
+
+    transition:.3s;
+
+    margin:10px;
 }
 
 .yes{
-    background:#4CAF50;
+    background:#ff8fb1;
     color:white;
 }
 
+.yes:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(255,143,177,.4);
+}
+
 .no{
-    background:#ff4d4d;
+    background:#ffb6c1;
     color:white;
     position:absolute;
 }
 
 .next{
-    background:#2196F3;
+    background:#ff73a3;
     color:white;
 }
 
+.next:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(255,115,163,.4);
+}
+
 select{
-    padding:10px;
-    margin:10px;
+    width:100%;
+    padding:12px;
+
+    margin:10px 0;
+
+    border:none;
+    border-radius:15px;
+
+    background:white;
+
     font-size:16px;
 }
 
-.food-option{
-    margin:8px;
-    padding:10px;
+.food-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:20px;
 }
 
-.confetti{
-    font-size:50px;
-    animation: pop 1s infinite alternate;
+.food-card{
+    background:white;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
 }
 
-@keyframes pop{
-    from{transform:translateY(0);}
-    to{transform:translateY(-15px);}
+.food-card:hover{
+    transform:scale(1.05);
 }
+
+.food-card input{
+    margin-right:5px;
+}
+
+.confetti-icon{
+    font-size:60px;
+    animation:float 1s infinite alternate;
+}
+
+@keyframes float{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-10px);
+    }
+
+}
+
+.summary-box{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    margin-top:15px;
+    color:#555;
+    line-height:2;
+}
+
 </style>
 </head>
+
 <body>
 
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
-    <h1>Will you invite us on a dinner?</h1>
 
-    <div>
-        <button class="yes" onclick="nextPage(2)">Yes</button>
-        <button class="no" id="noBtn">No</button>
+    <div class="card">
+
+        <h1>Will you invite us on a dinner? 💖</h1>
+
+        <button class="yes" onclick="celebrate()">
+            Yes
+        </button>
+
+        <button class="no" id="noBtn">
+            No
+        </button>
+
     </div>
+
 </div>
 
 <!-- PAGE 2 -->
 <div class="page" id="page2">
-    <h1>Yes, you agreed! 😊</h1>
 
-    <div class="confetti">
-        🎉 🎊 🎉 🎊 🎉
+    <div class="card">
+
+        <h1>Yes, you agreed! 😊</h1>
+
+        <div class="confetti-icon">
+            🎉 🎊 🎉
+        </div>
+
+        <br>
+
+        <button class="next" onclick="nextPage(3)">
+            Next
+        </button>
+
     </div>
 
-    <button class="next" onclick="nextPage(3)">Next</button>
 </div>
 
 <!-- PAGE 3 -->
 <div class="page" id="page3">
-    <h1>So when will you plan to go out?</h1>
 
-    <select id="month">
-        <option>January</option>
-        <option>February</option>
-        <option>March</option>
-        <option>April</option>
-        <option>May</option>
-        <option>June</option>
-        <option>July</option>
-        <option>August</option>
-        <option>September</option>
-        <option>October</option>
-        <option>November</option>
-        <option>December</option>
-    </select>
+    <div class="card">
 
-    <select id="day">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
-        <option>13</option>
-        <option>14</option>
-        <option>15</option>
-        <option>16</option>
-        <option>17</option>
-        <option>18</option>
-        <option>19</option>
-        <option>20</option>
-        <option>21</option>
-        <option>22</option>
-        <option>23</option>
-        <option>24</option>
-        <option>25</option>
-        <option>26</option>
-        <option>27</option>
-        <option>28</option>
-        <option>29</option>
-        <option>30</option>
-        <option>31</option>
-    </select>
+        <h1>So when will you plan to go out? 📅</h1>
 
-    <br>
+        <select id="month">
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+        </select>
 
-    <select id="time">
-        <option>5:00 PM</option>
-        <option>6:00 PM</option>
-        <option>7:00 PM</option>
-        <option>8:00 PM</option>
-        <option>9:00 PM</option>
-    </select>
+        <select id="day">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+            <option>25</option>
+            <option>26</option>
+            <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+            <option>31</option>
+        </select>
 
-    <button class="next" onclick="nextPage(4)">Next</button>
+        <select id="time">
+            <option>5:00 PM</option>
+            <option>6:00 PM</option>
+            <option>7:00 PM</option>
+            <option>8:00 PM</option>
+            <option>9:00 PM</option>
+        </select>
+
+        <button class="next" onclick="nextPage(4)">
+            Next
+        </button>
+
+    </div>
+
 </div>
 
 <!-- PAGE 4 -->
 <div class="page" id="page4">
-    <h1>What are we eating?</h1>
 
-    <label class="food-option">
-        <input type="radio" name="food" value="Pizza"> Pizza 🍕
-    </label>
+    <div class="card">
 
-    <label class="food-option">
-        <input type="radio" name="food" value="Burger"> Burger 🍔
-    </label>
+        <h1>What are we eating? 🍽️</h1>
 
-    <label class="food-option">
-        <input type="radio" name="food" value="Steak"> Steak 🥩
-    </label>
+        <div class="food-grid">
 
-    <label class="food-option">
-        <input type="radio" name="food" value="Sushi"> Sushi 🍣
-    </label>
+            <label class="food-card">
+                <input type="radio" name="food" value="Pizza">
+                🍕 Pizza
+            </label>
 
-    <label class="food-option">
-        <input type="radio" name="food" value="Pasta"> Pasta 🍝
-    </label>
+            <label class="food-card">
+                <input type="radio" name="food" value="Burger">
+                🍔 Burger
+            </label>
 
-    <label class="food-option">
-        <input type="radio" name="food" value="Samgyupsal"> Samgyupsal 🥓
-    </label>
+            <label class="food-card">
+                <input type="radio" name="food" value="Steak">
+                🥩 Steak
+            </label>
 
-    <button class="next" onclick="showSummary()">Finish</button>
+            <label class="food-card">
+                <input type="radio" name="food" value="Sushi">
+                🍣 Sushi
+            </label>
+
+            <label class="food-card">
+                <input type="radio" name="food" value="Pasta">
+                🍝 Pasta
+            </label>
+
+            <label class="food-card">
+                <input type="radio" name="food" value="Samgyupsal">
+                🥓 Samgyupsal
+            </label>
+
+        </div>
+
+        <br>
+
+        <button class="next" onclick="showSummary()">
+            Finish
+        </button>
+
+    </div>
+
 </div>
 
 <!-- PAGE 5 -->
 <div class="page" id="page5">
-    <h1>🎉 Dinner Plan Confirmed 🎉</h1>
 
-    <p id="summary"></p>
+    <div class="card">
+
+        <h1>🎉 Dinner Plan Confirmed 🎉</h1>
+
+        <div class="summary-box" id="summary"></div>
+
+    </div>
+
 </div>
 
 <script>
-function nextPage(page){
-    document.querySelectorAll('.page').forEach(p=>{
-        p.classList.remove('active');
-    });
 
-    document.getElementById('page'+page).classList.add('active');
+function nextPage(page){
+
+    document.querySelectorAll(".page")
+    .forEach(p => p.classList.remove("active"));
+
+    document
+    .getElementById("page"+page)
+    .classList.add("active");
 }
 
-const noBtn = document.getElementById('noBtn');
+function celebrate(){
 
-document.addEventListener('mousemove', function(){
-    let x = Math.random() * (window.innerWidth - 120);
-    let y = Math.random() * (window.innerHeight - 80);
-
-    noBtn.addEventListener('mouseover', ()=>{
-        noBtn.style.left = x + 'px';
-        noBtn.style.top = y + 'px';
+    confetti({
+        particleCount:200,
+        spread:150,
+        origin:{ y:0.6 }
     });
+
+    setTimeout(()=>{
+        nextPage(2);
+    },1000);
+}
+
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",()=>{
+
+    let maxX = window.innerWidth - 150;
+    let maxY = window.innerHeight - 100;
+
+    noBtn.style.left =
+        Math.random() * maxX + "px";
+
+    noBtn.style.top =
+        Math.random() * maxY + "px";
 });
 
 function showSummary(){
 
-    let month = document.getElementById("month").value;
-    let day = document.getElementById("day").value;
-    let time = document.getElementById("time").value;
+    let month =
+    document.getElementById("month").value;
 
-    let food = document.querySelector('input[name="food"]:checked');
+    let day =
+    document.getElementById("day").value;
 
-    let selectedFood = food ? food.value : "No food selected";
+    let time =
+    document.getElementById("time").value;
+
+    let food =
+    document.querySelector(
+        'input[name="food"]:checked'
+    );
+
+    let selectedFood =
+    food ? food.value : "No food selected";
 
     document.getElementById("summary").innerHTML =
+
     `
-    📅 Date: ${month} ${day}<br><br>
-    ⏰ Time: ${time}<br><br>
-    🍽️ Food: ${selectedFood}
+    📅 <b>Date:</b> ${month} ${day}
+    <br><br>
+
+    ⏰ <b>Time:</b> ${time}
+    <br><br>
+
+    🍽️ <b>Food:</b> ${selectedFood}
+    <br><br>
+
+    💖 Can't wait for our dinner!
     `;
+
+    confetti({
+        particleCount:300,
+        spread:180
+    });
 
     nextPage(5);
 }
+
 </script>
 
 </body>
